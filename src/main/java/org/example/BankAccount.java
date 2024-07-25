@@ -2,18 +2,16 @@ package org.example;
 
 public class BankAccount {
     private String accountHolderName;
-    private String fundsAvailable;
     private double balance;
 
-    //constructor to initialize the account holders name/balance
-    public BankAccount(String accountHolderName, String fundsAvailable, double balance) {
+    // Constructor to initialize the account holder's name and balance
+    public BankAccount(String accountHolderName, double balance) {
         this.accountHolderName = accountHolderName;
-        this.fundsAvailable = fundsAvailable;
         this.balance = balance;
+        System.out.println(accountHolderName + " Available Funds: " + String.format("%.2f", balance));
     }
 
-    //Method for deposits
-
+    // Method for deposits
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -27,16 +25,16 @@ public class BankAccount {
         }
     }
 
-    //Method for withdrawal
+    // Method for withdrawal
     public void withdrawal(double amount) {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
             System.out.println(" ");
-            System.out.println("Withdrawn " + String.format("%.2f", amount) + " to " + accountHolderName);
+            System.out.println("Withdrew " + String.format("%.2f", amount) + " from " + accountHolderName);
             System.out.println("New balance: " + String.format("%.2f", balance));
         } else if (amount > balance) {
             System.out.println(" ");
-            System.out.println("Cannot withdraw " + String.format("%.2f", amount) + " to " + accountHolderName);
+            System.out.println("Cannot withdraw " + String.format("%.2f", amount) + " from " + accountHolderName);
             System.out.println("Insufficient balance");
         } else {
             System.out.println(" ");
@@ -44,18 +42,20 @@ public class BankAccount {
         }
     }
 
-    //Print account deets
-
+    // Method to print account details
+    @Override
     public String toString() {
-        return accountHolderName + " " + fundsAvailable + " " + String.format("%.2f", balance);
+        return accountHolderName + " Available Funds: " + String.format("%.2f", balance);
     }
 
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("Jack Johnson", "Available Funds: ", 500.00);
+        BankAccount account = new BankAccount("Jack Johnson", 500.00);
         System.out.println(account);
 
         account.deposit(100.00);
+        System.out.println(account);
 
+        account.withdrawal(50.00);
         System.out.println(account);
     }
 }
