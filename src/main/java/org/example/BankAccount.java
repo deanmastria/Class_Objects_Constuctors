@@ -43,19 +43,37 @@ public class BankAccount {
     }
 
     // Method to print account details
-    @Override
+    @Override /*used to indicate that a method is intended to override a method declared in a superclass.
+                the compiler will treat it as a new method in the subclass if not used*/
     public String toString() {
         return accountHolderName + " Available Funds: " + String.format("%.2f", balance);
     }
 
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("Jack Johnson", 500.00);
-        System.out.println(account);
+        // Create the account for Jack Johnson with 500 dollars
+        BankAccount account1 = new BankAccount("Jack Johnson", 500.00);
 
-        account.deposit(100.00);
-        System.out.println(account);
+        //added additional accounts for second part of assignment
+        BankAccount account2 = new BankAccount("Leonardo DiCaprionardo", 5000.00);
 
-        account.withdrawal(50.00);
-        System.out.println(account);
+        BankAccount account3 = new BankAccount("Don Johnson", 300.00);
+
+        account1.deposit(100.00);
+        System.out.println(account1);
+
+        account1.withdrawal(50.00);
+        System.out.println(account1);
+
+        // Withdraw 100 dollars from Leo Dicaprionardo
+        account2.withdrawal(100.00);
+        // Deposit 100 dollars into Don Johnsons
+        account3.deposit(100.00);
+
+        // Printed final account details
+        System.out.println(" ");
+        System.out.println("Final Account Details:");
+        System.out.println(account1);
+        System.out.println(account2);
+        System.out.println(account3);
     }
 }
